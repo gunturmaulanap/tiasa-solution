@@ -65,24 +65,27 @@ export default function ServicesSection() {
       viewport={{ once: true, margin: "-100px" }}
       variants={servicesContainer}
       id="services"
-      className="bg-white py-24"
+      className="bg-white py-16 md:py-20 lg:py-24"
     >
       <div className="mx-auto w-full max-w-[1200px] px-6">
-        <motion.div variants={headerVariants} className="mb-16 text-center">
+        <motion.div
+          variants={headerVariants}
+          className="mb-10 md:mb-12 lg:mb-16 text-center"
+        >
           <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
             OUR EXPERTISE
           </span>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#0F172A] mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0F172A] mb-4">
             Menyelesaikan Masalah dengan Solusi Terukur
           </h2>
-          <p className="text-[#64748B] max-w-2xl mx-auto text-lg">
+          <p className="text-[#64748B] max-w-2xl mx-auto text-base md:text-lg">
             Kami menyediakan solusi teknologi kustom yang dirancang khusus untuk
             menjawab tantangan operasional dan mempercepat transformasi digital.
           </p>
         </motion.div>
 
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8"
           style={{ perspective: "1200px" }}
         >
           {services.map((service, index) => (
@@ -90,7 +93,7 @@ export default function ServicesSection() {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              className="p-8 rounded-2xl border border-slate-100 hover:border-[#0F172A]/20 hover:shadow-xl transition-shadow duration-300 group bg-white"
+              className="p-6 md:p-7 lg:p-8 rounded-2xl border border-slate-100 hover:border-[#0F172A]/20 hover:shadow-xl transition-shadow duration-300 group bg-white"
             >
               <div className="mb-6 inline-block p-4 rounded-xl bg-slate-50 text-[rgb(var(--marka-blue))] group-hover:bg-[rgb(var(--marka-blue))] group-hover:text-white transition-all duration-300">
                 {service.icon}

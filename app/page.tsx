@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-x-clip pt-[84px] lg:pt-[132px]">
         <HeroSection />
         <LogoCloud />
         <ServicesSection />

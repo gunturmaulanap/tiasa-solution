@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MessageCircle, Mail, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,7 +14,6 @@ export default function Header() {
     null
   );
   const lastScrollY = useRef(0);
-  const pathname = usePathname();
 
   const waLink =
     "https://wa.me/6281392854911?text=Halo%20Tiasa%20Solution,%20saya%20ingin%20konsultasi%20mengenai%20kebutuhan%20IT%20bisnis%20saya.";
@@ -74,11 +72,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-    setOpenMobileSubmenu(null);
-  }, [pathname]);
 
   const menuItems = [
     { name: "Beranda", href: "/#" },
@@ -194,8 +187,7 @@ export default function Header() {
                     {item.submenu && (
                       <motion.div
                         initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false, amount: 0.5 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2 }}
                         className="absolute top-full left-0 mt-2 w-56 bg-white border border-slate-100 shadow-xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top translate-y-2 group-hover:translate-y-0"
                       >

@@ -131,11 +131,11 @@ export default function HeroSection() {
       initial="hidden"
       animate="visible"
       variants={heroContainer}
-      id="#"
-      className="mt-[145px] flex min-h-[calc(100vh-145px)] items-center bg-white px-0 py-[60px] pb-[72px] max-md:mt-[70px] max-md:min-h-auto max-md:py-[92px] max-md:pb-[48px]"
+      id="hero"
+      className="flex min-h-[calc(100dvh-84px)] items-center bg-white px-0 py-10 sm:py-12 lg:min-h-[calc(100dvh-132px)] lg:py-[60px] lg:pb-[72px]"
     >
       <div className="mx-auto flex h-full w-full max-w-[1200px] items-center px-6">
-        <div className="grid w-full grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] items-center gap-12 max-lg:grid-cols-1 max-lg:gap-8">
+        <div className="grid w-full grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] items-center gap-10 lg:gap-12 max-lg:grid-cols-1 max-lg:gap-8">
           <div className="max-lg:text-center">
             <motion.div
               variants={heroItem}
