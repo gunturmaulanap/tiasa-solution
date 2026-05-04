@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 174.11 90.29">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        font-family: BricolageGrotesque-Regular, 'Bricolage Grotesque';
+        font-size: 53.73px;
+        font-variation-settings: 'opsz' 14, 'wght' 400, 'wdth' 100;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="M0,0v25.8h25.98c.21,7.27,3.44,15.14,10.66,22.25l3.52-4.53c-9.45-9.31-10.26-18.25-7.57-25.28,2.69-7.03,9.44-12.11,15.99-12.22h20.29v13.77h-21.54v6.02h26.88V0h-25.72c-8.85.15-17.25,6.52-20.82,15.85-.47,1.23-.88,2.61-1.16,3.93H5.34V6.02h25.27V0H0ZM42.17,21.16l-4.5,3.26c5.09,8.9,6.45,18.57,4.56,26.16-1.6,6.42-5.55,11.77-12.14,14.04v-16.78h-5.35v20.61l3.13,2.96c10.29-2,17.12-9.65,19.5-19.21,2.38-9.57.59-20.91-5.21-31.06Z"/>
+  <text class="cls-3" transform="translate(71.98 71.43)"><tspan x="0" y="0">i</tspan><tspan class="cls-4" x="13.43" y="0">a</tspan><tspan class="cls-5" x="43.3" y="0">s</tspan><tspan class="cls-1" x="72.21" y="0">a</tspan></text>
+</svg>

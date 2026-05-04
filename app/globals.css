@@ -1,26 +1,186 @@
+/* ================================================================
+   GLOBALS.CSS — Software House Edition
+   Palette: Navy & Slate (Enterprise Tech), Light-mode default
+   Stack  : Tailwind v4 + shadcn + tw-animate-css
+
+   Color anchors:
+     - Primary  : #0F172A  (Slate 900 / Navy)
+     - Accent   : #2563EB  (Blue 600 — corporate accent)
+     - Support  : #64748B  (Slate 500)
+     - Border   : #E2E8F0  (Slate 200)
+     - Surface  : #F8FAFC  (Slate 50)
+
+   Format: RGB triplet (e.g. `15 23 42`) so we can do
+           `rgb(var(--x) / 0.5)` for alpha modulation.
+   ================================================================ */
+
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ----------------------------------------------------------------
+   THEME BRIDGE — exposes CSS vars as Tailwind v4 utilities
+   ---------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ----------------------------------------------------------------
+   LIGHT MODE TOKENS
+   ---------------------------------------------------------------- */
+:root {
+  --background: 255 255 255; /* #ffffff */
+  --foreground: 15 23 42; /* #0f172a — Slate 900 */
+
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+
+  --primary: 15 23 42; /* Slate 900 / Navy */
+  --primary-foreground: 248 250 252; /* Slate 50 */
+
+  --secondary: 241 245 249; /* Slate 100 */
+  --secondary-foreground: 15 23 42;
+
+  --muted: 248 250 252; /* Slate 50 */
+  --muted-foreground: 100 116 139; /* #64748b — Slate 500 */
+
+  --accent: 37 99 235; /* #2563eb — Blue 600 */
+  --accent-foreground: 248 250 252;
+
+  --destructive: 220 38 38; /* Red 600 */
+
+  --border: 226 232 240; /* Slate 200 */
+  --input: 203 213 225; /* Slate 300 */
+  --ring: 37 99 235; /* matches accent */
+
+  --chart-1: 37 99 235; /* Blue 600 */
+  --chart-2: 100 116 139; /* Slate 500 */
+  --chart-3: 15 23 42; /* Slate 900 */
+  --chart-4: 51 65 85; /* Slate 700 */
+  --chart-5: 148 163 184; /* Slate 400 */
+
+  --sidebar: 248 250 252;
+  --sidebar-foreground: 15 23 42;
+  --sidebar-primary: 15 23 42;
+  --sidebar-primary-foreground: 248 250 252;
+  --sidebar-accent: 241 245 249;
+  --sidebar-accent-foreground: 15 23 42;
+  --sidebar-border: 226 232 240;
+  --sidebar-ring: 37 99 235;
+
+  --radius: 0.5rem;
+
+  /* Brand aliases (kept for backward compat with custom utilities).
+     Names retained so existing components don't break; values updated
+     to the Navy & Slate palette. */
+  --marka-blue: 37 99 235; /* was #0195ff -> Blue 600 */
+  --marka-black: 15 23 42; /* was #060606 -> Slate 900 */
+  --marka-gray-medium: 203 213 225; /* was #ccc    -> Slate 300 */
+  --marka-gray-dark: 100 116 139; /* was #4c4c4c -> Slate 500 */
+  --marka-gray-light: 226 232 240; /* was #dddfe3 -> Slate 200 */
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ----------------------------------------------------------------
+   DARK MODE TOKENS — same RGB-triplet format as :root
+   (Was previously oklch(), which broke `rgb(var(--x))` utilities.)
+   ---------------------------------------------------------------- */
+.dark {
+  --background: 2 6 23; /* Slate 950 */
+  --foreground: 248 250 252;
+
+  --card: 15 23 42;
+  --card-foreground: 248 250 252;
+
+  --popover: 15 23 42;
+  --popover-foreground: 248 250 252;
+
+  --primary: 248 250 252;
+  --primary-foreground: 15 23 42;
+
+  --secondary: 30 41 59; /* Slate 800 */
+  --secondary-foreground: 248 250 252;
+
+  --muted: 30 41 59;
+  --muted-foreground: 148 163 184; /* Slate 400 */
+
+  --accent: 59 130 246; /* Blue 500 — brighter for dark surfaces */
+  --accent-foreground: 15 23 42;
+
+  --destructive: 248 113 113; /* Red 400 */
+
+  --border: 30 41 59;
+  --input: 51 65 85; /* Slate 700 */
+  --ring: 59 130 246;
+
+  --chart-1: 59 130 246;
+  --chart-2: 148 163 184;
+  --chart-3: 248 250 252;
+  --chart-4: 100 116 139;
+  --chart-5: 51 65 85;
+
+  --sidebar: 15 23 42;
+  --sidebar-foreground: 248 250 252;
+  --sidebar-primary: 59 130 246;
+  --sidebar-primary-foreground: 248 250 252;
+  --sidebar-accent: 30 41 59;
+  --sidebar-accent-foreground: 248 250 252;
+  --sidebar-border: 30 41 59;
+  --sidebar-ring: 59 130 246;
+
+  --marka-blue: 59 130 246;
+  --marka-black: 248 250 252;
+  --marka-gray-medium: 71 85 105;
+  --marka-gray-dark: 148 163 184;
+  --marka-gray-light: 51 65 85;
 }
