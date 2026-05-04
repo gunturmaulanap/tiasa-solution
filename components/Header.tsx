@@ -42,15 +42,25 @@ export default function Header() {
     const targetElement = document.querySelector(targetId);
 
     if (targetElement) {
+      const headerEl = document.querySelector("header");
+      const headerHeight = headerEl?.getBoundingClientRect().height ?? 100;
       const offsetTop =
-        targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-      // Close mobile menu after click
+        targetElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        (headerHeight + 12);
+
+      // Close mobile menu first, then scroll after layout settles.
       setIsMenuOpen(false);
       setOpenMobileSubmenu(null);
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
+        });
+      });
     }
   };
 
@@ -288,25 +298,37 @@ export default function Header() {
                   >
                     {item.submenu ? (
                       <div className="flex flex-col gap-3">
-                        <motion.button
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() =>
-                            setOpenMobileSubmenu(
-                              openMobileSubmenu === item.name ? null : item.name
-                            )
-                          }
-                          className="flex items-center justify-between w-full text-lg font-bold text-[#0F172A] tracking-tight"
-                        >
-                          {item.name}
-                          <motion.div
-                            animate={{
-                              rotate: openMobileSubmenu === item.name ? 180 : 0,
-                            }}
-                            transition={{ duration: 0.3 }}
+                        <div className="flex items-center justify-between gap-3">
+                          <a
+                            href={item.href}
+                            onClick={(e) => handleSmoothScroll(e, item.href)}
+                            className="text-lg font-bold text-[#0F172A] tracking-tight"
                           >
-                            <ChevronDown size={18} />
-                          </motion.div>
-                        </motion.button>
+                            {item.name}
+                          </a>
+                          <motion.button
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() =>
+                              setOpenMobileSubmenu(
+                                openMobileSubmenu === item.name
+                                  ? null
+                                  : item.name
+                              )
+                            }
+                            className="flex items-center justify-center rounded-md p-1 text-[#0F172A]"
+                            aria-label={`Toggle submenu ${item.name}`}
+                          >
+                            <motion.div
+                              animate={{
+                                rotate:
+                                  openMobileSubmenu === item.name ? 180 : 0,
+                              }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <ChevronDown size={18} />
+                            </motion.div>
+                          </motion.button>
+                        </div>
                         <motion.div
                           initial={false}
                           animate={{
