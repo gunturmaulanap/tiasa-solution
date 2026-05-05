@@ -101,7 +101,39 @@ export default function RootLayout({
       lang="id"
       className={`${inter.variable} ${publicSans.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Tiasa Solution",
+              alternateName: "Tiasa",
+              url: "https://www.tiasasolution.com",
+              logo: "https://www.tiasasolution.com/images/logos/logo-landscape.svg",
+              description:
+                "Software house di Yogyakarta spesialis pembuatan aplikasi web, mobile, sistem POS, dan custom software.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Yogyakarta",
+                addressCountry: "ID",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+62-813-9285-4911",
+                contactType: "customer service",
+                availableLanguage: "Indonesian",
+              },
+              sameAs: [
+                "https://linkedin.com/company/tiasa-solution",
+                "https://instagram.com/tiasa.solution",
+              ],
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
