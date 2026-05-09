@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 // TESTIMONIALS ANIMATION: Blur-to-sharp dengan slight scale.
 // Filter blur lebih premium daripada fade biasa, kasih sense of "focus".
@@ -111,21 +112,35 @@ const testimonials = [
   },
 ];
 
+const marqueeTestimonials = [
+  ...testimonials,
+  ...testimonials,
+  ...testimonials,
+  ...testimonials,
+];
+
 export default function TestimonialsSection() {
+  const [isClientReady, setIsClientReady] = useState(false);
+
+  useEffect(() => {
+    const raf = window.requestAnimationFrame(() => setIsClientReady(true));
+    return () => window.cancelAnimationFrame(raf);
+  }, []);
+
   return (
     <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
       variants={testimonialsContainer}
-      className="bg-white py-24 overflow-hidden"
+      className="bg-[#F8FAFC] py-24 overflow-hidden"
     >
       <div className="mx-auto w-full max-w-[1200px] px-6">
         <motion.div variants={headerVariants} className="text-center mb-16">
           <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
             CLIENT TESTIMONIALS
           </span>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[rgb(var(--marka-black))] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-[rgb(var(--marka-black))] mb-4">
             Dipercaya oleh Bisnis & Industri
           </h2>
           <p className="text-[rgb(var(--marka-gray-dark))] max-w-2xl mx-auto text-lg">
@@ -138,45 +153,54 @@ export default function TestimonialsSection() {
           <div className="absolute inset-y-0 left-0 w-32 hidden md:block z-10 pointer-events-none bg-linear-to-r from-white to-transparent"></div>
           <div className="absolute inset-y-0 right-0 w-32 hidden md:block z-10 pointer-events-none bg-linear-to-l from-white to-transparent"></div>
 
-          <Swiper
-            modules={[Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1.2}
-            autoplay={{ delay: 0, disableOnInteraction: false }}
-            loop={true}
-            speed={7000}
-            allowTouchMove={false}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1440: { slidesPerView: 4 },
-            }}
-            className="testimonial-swiper pointer-events-none"
-          >
-            {testimonials.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div className="h-full p-8 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <div className="quote-content relative">
-                    <span className="text-5xl text-[rgb(var(--marka-blue))] absolute -top-4 -left-2 opacity-20 font-serif">
-                      &ldquo;
-                    </span>
-                    <p className="text-[rgb(var(--marka-gray-dark))] italic leading-relaxed relative z-10 text-sm">
-                      {item.quote}
-                    </p>
-                  </div>
+          {isClientReady && (
+            <Swiper
+              modules={[Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+                waitForTransition: false,
+              }}
+              loop={true}
+              speed={5000}
+              allowTouchMove={false}
+              loopAdditionalSlides={8}
+              watchSlidesProgress={true}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1440: { slidesPerView: 4 },
+              }}
+              className="testimonial-swiper pointer-events-none"
+            >
+              {marqueeTestimonials.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div className="h-full p-8 rounded-2xl bg-white border border-zinc-200 shadow-sm flex flex-col justify-between">
+                    <div className="quote-content relative">
+                      <span className="text-5xl text-[rgb(var(--marka-blue))] absolute -top-4 -left-2 opacity-20 font-serif">
+                        &ldquo;
+                      </span>
+                      <p className="text-[rgb(var(--marka-gray-dark))] italic leading-relaxed relative z-10 text-sm">
+                        {item.quote}
+                      </p>
+                    </div>
 
-                  <div className="client-info mt-8 pt-6 border-t border-slate-200">
-                    <h5 className="font-bold text-[rgb(var(--marka-black))] text-sm tracking-wide uppercase">
-                      {item.name}
-                    </h5>
-                    <p className="text-[rgb(var(--marka-blue))] text-[10px] font-bold tracking-widest uppercase mt-1">
-                      {item.role}
-                    </p>
+                    <div className="client-info mt-8 pt-6 border-t border-zinc-200">
+                      <h5 className="font-semibold text-[rgb(var(--marka-black))] text-sm tracking-wide uppercase">
+                        {item.name}
+                      </h5>
+                      <p className="text-[rgb(var(--marka-blue))] text-[10px] font-bold tracking-widest uppercase mt-1">
+                        {item.role}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </motion.div>
       </div>
     </motion.section>

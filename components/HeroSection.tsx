@@ -1,9 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
 import { useEffect, useState } from "react";
 import Lottie from "lottie-react";
 import manRobotAnimation from "./assets/lottie-json/man-robot.json";
@@ -116,14 +113,27 @@ const rotatingWords = [
   "Aplikasi Mobile",
 ];
 
+const marqueeTechIcons = [
+  ...techIcons,
+  ...techIcons,
+  ...techIcons,
+  ...techIcons,
+];
+
 export default function HeroSection() {
   const [wordIndex, setWordIndex] = useState(0);
+  const [isClientReady, setIsClientReady] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % rotatingWords.length);
     }, 2200);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const raf = window.requestAnimationFrame(() => setIsClientReady(true));
+    return () => window.cancelAnimationFrame(raf);
   }, []);
 
   return (
@@ -147,7 +157,7 @@ export default function HeroSection() {
             <motion.h1
               variants={heroHeadline}
               style={{ perspective: "1000px" }}
-              className="mb-5 text-[clamp(34px,5vw,56px)] font-bold leading-[1.15] text-[rgb(var(--marka-black))]"
+              className="mb-5 text-[clamp(34px,5vw,56px)] font-semibold leading-[1.15] text-[rgb(var(--marka-black))]"
             >
               <span>Solusi digital tepat guna untuk membangun </span>
               <br />
@@ -189,35 +199,20 @@ export default function HeroSection() {
               className="mt-3.5 w-full"
               aria-label="Tech stack icons"
             >
-              <Swiper
-                modules={[Autoplay]}
-                spaceBetween={20}
-                slidesPerView={3}
-                autoplay={{
-                  delay: 0,
-                  disableOnInteraction: false,
-                  pauseOnMouseEnter: false,
-                  waitForTransition: true,
-                }}
-                loop
-                allowTouchMove={false}
-                speed={7000}
-                breakpoints={{
-                  320: { slidesPerView: 2, spaceBetween: 12 },
-                  640: { slidesPerView: 3, spaceBetween: 16 },
-                  768: { slidesPerView: 4, spaceBetween: 20 },
-                  1024: { slidesPerView: 3, spaceBetween: 24 },
-                }}
-                className="w-full"
-              >
-                {techIcons.map((tech, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="flex h-24 items-center justify-center px-2 max-md:h-[84px] max-md:px-1.5">
-                      {tech.component}
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              {isClientReady && (
+                <div className="relative w-full overflow-hidden">
+                  <div className="hero-marquee-track flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                    {marqueeTechIcons.map((tech, index) => (
+                      <div
+                        key={`${tech.name}-${index}`}
+                        className="flex h-24 min-w-[110px] items-center justify-center px-2 max-md:h-[84px] max-md:px-1.5"
+                      >
+                        {tech.component}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
 

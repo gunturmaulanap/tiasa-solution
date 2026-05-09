@@ -173,78 +173,91 @@ export default function WhyChooseUsAndStatsSection() {
   ];
 
   return (
-    <motion.section
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      variants={sectionContainer}
-      id="why-choose-us"
-      className="bg-[#F8FAFC] py-16 md:py-20 lg:py-24"
-    >
-      <div className="mx-auto w-full max-w-[1200px] px-6">
-        <motion.div
-          variants={headerVariants}
-          className="mb-10 md:mb-12 lg:mb-16 text-center"
-        >
-          <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
-            WHY CHOOSE US
-          </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0F172A] mb-4">
-            Mengapa Memilih Tiasa Solution?
-          </h2>
-          <p className="text-[#64748B] max-w-2xl text-base md:text-lg mx-auto">
-            Kami menggabungkan keahlian teknis mendalam dengan pemahaman bisnis
-            untuk menghadirkan sistem digital yang presisi.
-          </p>
-        </motion.div>
+    <div>
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={sectionContainer}
+        id="why-choose-us"
+        className="bg-white py-16 md:py-20 lg:py-24"
+      >
+        <div className="mx-auto w-full max-w-[1200px] px-6">
+          <motion.div
+            variants={headerVariants}
+            className="mb-10 md:mb-12 lg:mb-16 text-center"
+          >
+            <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
+              WHY CHOOSE US
+            </span>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#0F172A] mb-4">
+              Mengapa Memilih Tiasa Solution?
+            </h2>
+            <p className="text-[#64748B] max-w-2xl text-base md:text-lg mx-auto">
+              Kami menggabungkan keahlian teknis mendalam dengan pemahaman
+              bisnis untuk menghadirkan sistem digital yang presisi.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 mb-14 md:mb-18 lg:mb-24">
-          {valueProps.map((prop, index) => (
-            <motion.div
-              key={index}
-              variants={valueCardVariants}
-              whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              className="group rounded-2xl bg-white p-6 md:p-8 lg:p-10 text-center transition-shadow duration-300 hover:shadow-xl border border-slate-100"
-            >
-              <div className="mb-8 inline-block p-5 rounded-2xl bg-slate-50 text-[rgb(var(--marka-blue))] group-hover:bg-[rgb(var(--marka-blue))] group-hover:text-white transition-all duration-300">
-                {prop.icon}
-              </div>
-              <h4 className="text-xl font-bold text-[#0F172A] mb-4 uppercase tracking-tight">
-                {prop.title}
-              </h4>
-              <p className="text-[#64748B] leading-relaxed text-sm">
-                {prop.description}
-              </p>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 mb-14 md:mb-18 lg:mb-24">
+            {valueProps.map((prop, index) => (
+              <motion.div
+                key={index}
+                variants={valueCardVariants}
+                whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                className="group rounded-2xl bg-white p-6 md:p-8 lg:p-10 text-center transition-shadow duration-300 hover:shadow-xl border border-zinc-100"
+              >
+                <div className="mb-8 inline-block p-5 rounded-2xl bg-zinc-50 text-[rgb(var(--marka-blue))] group-hover:bg-[rgb(var(--marka-blue))] group-hover:text-white transition-all duration-300">
+                  {prop.icon}
+                </div>
+                <h4 className="text-xl font-semibold text-[#0F172A] mb-4 uppercase tracking-tight">
+                  {prop.title}
+                </h4>
+                <p className="text-[#64748B] leading-relaxed text-sm">
+                  {prop.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
+      </motion.section>
 
-        <motion.div
-          variants={headerVariants}
-          className="mb-6 md:mb-8 text-center"
-        >
-          <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
-            OUR IMPACT
-          </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#0F172A] mb-4">
-            Bukti Nyata Kinerja Kami
-          </h2>
-        </motion.div>
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={sectionContainer}
+        id="stats"
+        className="bg-[#F8FAFC] py-16 md:py-20 lg:py-24"
+      >
+        <div className="mx-auto w-full max-w-[1200px] px-6">
+          <motion.div
+            variants={headerVariants}
+            className="mb-6 md:mb-8 text-center"
+          >
+            <span className="mb-[18px] inline-block rounded-full bg-[rgb(var(--marka-blue)/0.1)] px-4 py-2 text-sm font-semibold tracking-[1px] text-[rgb(var(--marka-blue))] uppercase">
+              OUR IMPACT
+            </span>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#0F172A] mb-4">
+              Bukti Nyata Kinerja Kami
+            </h2>
+          </motion.div>
 
-        <div
-          ref={statsRef}
-          className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
-          {stats.map((stat, i) => (
-            <AnimatedStat
-              key={i}
-              label={stat.label}
-              value={stat.value}
-              shouldAnimate={isStatsInView}
-            />
-          ))}
+          <div
+            ref={statsRef}
+            className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          >
+            {stats.map((stat, i) => (
+              <AnimatedStat
+                key={i}
+                label={stat.label}
+                value={stat.value}
+                shouldAnimate={isStatsInView}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </motion.section>
+      </motion.section>
+    </div>
   );
 }
