@@ -121,7 +121,7 @@ export default function RootLayout({
               },
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+62-813-9285-4911",
+                telephone: "+62-812-1725-7112",
                 contactType: "customer service",
                 availableLanguage: "Indonesian",
               },

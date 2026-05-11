@@ -29,7 +29,7 @@ export default function Header() {
   const lastScrollY = useRef(0);
 
   const waLink =
-    "https://wa.me/6281392854911?text=Halo%20Tiasa%20Solution,%20saya%20ingin%20konsultasi%20mengenai%20kebutuhan%20IT%20bisnis%20saya.";
+    "https://wa.me/6281217257112?text=Halo%20Tiasa%20Solution,%20saya%20ingin%20konsultasi%20mengenai%20kebutuhan%20IT%20bisnis%20saya.";
 
   // Smooth scroll handler untuk anchor links
   const handleSmoothScroll = (
